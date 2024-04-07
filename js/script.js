@@ -21,17 +21,19 @@ function toggleLanguage() {
 
 
 
-function addTask() {
-    // Obtener los valores de los campos de entrada
-    var taskName = document.getElementById("text-task").value;
-    var taskDate = document.getElementById("text-date").value;
+// Al inicio de tu archivo JS, puedes definir una función para cargar las tareas desde el almacenamiento local si existen
+function loadTasksFromLocalStorage() {
+    // Intenta obtener las tareas del almacenamiento local
+    var tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-    // Verificar que ambos campos no estén vacíos
-    if (taskName.trim() === "" || taskDate.trim() === "") {
-        alert("Please complete all text-fields.");
-        return;
-    }
+    // Itera sobre las tareas cargadas y las agrega a la interfaz
+    tasks.forEach(function(task) {
+        addTaskToUI(task.text, task.date);
+    });
+}
 
+// Esta función agrega la tarea a la interfaz
+function addTaskToUI(taskName, taskDate) {
     // Crear los elementos para la nueva tarea
     var tasksDiv = document.createElement("div");
     tasksDiv.classList.add("tasks");
@@ -67,6 +69,49 @@ function addTask() {
     var appDiv = document.getElementById("app");
     appDiv.appendChild(tasksDiv);
 
+    // Evento para eliminar la tarea
+    tasksDiv.addEventListener("click", function () {
+        if (confirm("Do you want to delete this task?")) {
+            appDiv.removeChild(tasksDiv);
+            
+            // Obtener el índice de la tarea a eliminar
+            var indexToRemove = Array.from(appDiv.children).indexOf(tasksDiv);
+            
+            // Obtener el array de tareas del almacenamiento local
+            var tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            
+            // Eliminar la tarea correspondiente del array
+            tasks.splice(indexToRemove, 1);
+            
+            // Volver a guardar el array actualizado en el almacenamiento local
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+        }
+    });
+}
+
+
+
+// Esta función agrega una nueva tarea y la guarda en el almacenamiento local
+function addTask() {
+    // Obtener los valores de los campos de entrada
+    var taskName = document.getElementById("text-task").value;
+    var taskDate = document.getElementById("text-date").value;
+
+    // Verificar que ambos campos no estén vacíos
+    if (taskName.trim() === "" || taskDate.trim() === "") {
+        alert("Please complete all text-fields.");
+        return;
+    }
+
+    // Agregar la tarea a la interfaz
+    addTaskToUI(taskName, taskDate);
+
+    // Guardar la tarea en el almacenamiento local
+    var tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks.push({ text: taskName, date: taskDate });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
+    // Limpiar los campos de entrada
     document.getElementById("text-task").value = "";
     document.getElementById("text-date").value = "";
 
@@ -78,15 +123,11 @@ function addTask() {
             notification_box.classList.remove('active');
         }, 2000);
     }
-
-    tasksDiv.addEventListener("click", function () {
-        if (confirm("Do you want to delete this task?")) {
-            appDiv.removeChild(tasksDiv);
-        }
-    });
 }
 
-// Event listener para cerrar la notificación
-document.querySelector(".close_btn").addEventListener("click", function () {
-    document.querySelector(".notification_box").classList.remove('active');
+
+
+// Al cargar la página, cargamos las tareas guardadas en el almacenamiento local
+window.addEventListener('DOMContentLoaded', function() {
+    loadTasksFromLocalStorage();
 });
