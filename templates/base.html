@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Tasks To Do!{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/icon.ico') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <button id="menu-toggle" class="menu-icon">&#9776;</button>
+        <div class="logo">
+            <h1>Tasks To Do!</h1>
+        </div>
+        <div class="buscador">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="buscador" placeholder="Buscar tareas...">
+        </div>
+        <div class="login">
+            {% if 'user_id' in session %}
+                <a href="{{ url_for('cerrar_sesion') }}" class="header-login-logout">Cerrar Sesión</a>
+                <a href="{{ url_for('cerrar_sesion') }}" class="header-login-logout" id="logout2"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+            {% else %}
+                <a href="{{ url_for('ingreso') }}" class="header-login-logout">Ingresar</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <div class="title">
+                <h1>Tareas</h1>
+                <button class="cerrar-sidebar" id="cerrar-sidebar"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="buscador-sidebar">
+                <input type="text" id="buscador-input" placeholder="Buscar tareas...">
+            </div>
+
+            <div class="links">
+                <a href="{{ url_for('total_tareas') }}" class="{% if request.endpoint == 'total_tareas' %}active{% endif %}">Todas</a>
+                <a href="{{ url_for('tareas_pendientes') }}" class="{% if request.endpoint == 'tareas_pendientes' %}active{% endif %}">Pendientes</a>
+                <a href="{{ url_for('tareas_completadas') }}" class="{% if request.endpoint == 'tareas_completadas' %}active{% endif %}">Completadas</a>
+            </div>            
+        </div>
+
+        <div class="main">
+            <form id="form-agregar-tarea" action="{{ url_for('agregar_tarea') }}" method="POST">
+                <div class="agregar-tarea">
+                    <input type="text" name="descripcion" id="tarea" placeholder="Nueva Tarea" required>
+                    <button type="submit" class="button-agregar">
+                        <span><i class="fa-solid fa-plus"></i></span> Agregar
+                    </button>
+                </div>
+            </form>
+
+            {% block content %}
+            <!-- Aquí se inserta el contenido específico de cada página -->
+            {% endblock %}
+
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

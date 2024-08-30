@@ -1,0 +1,581 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #f3f4f6;
+}
+
+
+
+/* INICIAR SESION */
+.login-container,
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f3f4f6;
+}
+
+.form-login,
+.form-signup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 70px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    background: white;
+}
+.form-signup {
+    padding: 50px 70px 50px 70px;
+}
+
+.form-login .title {
+    margin-bottom: 50px;
+}
+.form-signup .title {
+    margin-bottom: 25px;
+}
+
+.form-login #mensaje {
+    font-size: 14px;
+    color: red;
+    background: #f2dede;
+    margin-bottom: 10px;
+    width: 250px;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid #ebccd1;
+}
+
+.form-login 
+
+.form-login .email,
+.form-login .password,
+.form-signup .apellido,
+.form-signup .nombre,
+.form-signup .signup-email,
+.form-signup .signup-password {
+    margin-bottom: 10px;
+}
+
+.password {
+    margin-top: 10px;
+}
+
+.email label,
+.password label,
+.apellido label,
+.nombre label,
+.signup-email label,
+.signup-password label {
+    font-size: 16px;
+}
+.email input,
+.password input,
+.apellido input,
+.nombre input,
+.signup-email input,
+.signup-password input {
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+    width: 250px;
+    font-size: 18px;
+    border: 1px solid lightgray;
+    transition: all .1s ease-in-out;
+}
+.email input:focus,
+.password input:focus,
+.nombre input:focus,
+.apellido input:focus,
+.signup-email input:focus,
+.signup-password input:focus {
+    border: 1px solid darkgray;
+}
+
+.button-ingresar {
+    margin-bottom: 10px;
+}
+.button-registrar {
+    margin: 10px 0 10px 0;
+}
+
+.button-ingresar button,
+.button-registrar button {
+    background: #151515;
+    color: white;
+    width: 250px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 50px;
+    font-size: 18px;
+    font-weight: 300;
+    transition: all .1s ease-in-out;
+}
+.button-ingresar button:hover,
+.button-registrar button:hover {
+    background: #303030;
+}
+
+.register p,
+.login p,
+.register a,
+.login a {
+    text-decoration: none;
+    color: #151515;
+    font-size: 14px;
+}
+.register a,
+.login a {
+    font-weight: 600;
+}
+.register a:hover,
+.login a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+/* ENCABEZADO */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+    margin-bottom: 10px;
+    background-color: white;
+    color: #151515;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+}
+header .menu-icon {
+    display: none;
+}
+header .login .header-login-logout,
+header .login #logout2 {
+    font-size: 16px;
+    background-color: #151515;
+    color: white;
+    border-radius: 5px;
+    font-weight: 400;
+    padding: 10px 20px 10px 20px;
+}
+.login .header-login-logout a,
+.login #logout2 a {
+    text-decoration: none;
+}
+.login #logout2 {
+    display: none;
+}
+
+
+header .buscador  {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border: 1px solid lightgray;
+    color: #151515;
+    padding: 5px 7px 5px 7px;
+    border-radius: 5px;
+    width: 500px;
+}
+.buscador #buscador {
+    font-size: 14px;
+    margin-left: 5px;
+    border: none;
+    outline: none;
+    width: 100%;
+}
+.buscador .fa-solid {
+    padding: 0 2px 0 2px;
+    cursor: pointer;
+}
+
+
+
+.container {
+    display: flex;
+    min-height: 100vh;
+    background: rgb(243, 244, 246);
+    margin: 0 50px 0 50px;
+}
+
+
+
+/* BARRA MENU LATERAL */
+.sidebar {
+    flex-grow: 1;
+    margin: 10px 10px 0px 0;
+    padding: 30px 20px 30px 20px;
+    height: 100vh;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar .title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sidebar .title h1 {
+    font-size: 24px;
+}
+
+.sidebar .title .cerrar-sidebar {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 18px;
+}
+
+.sidebar .buscador-sidebar {
+    display: none;
+}
+
+.sidebar .links {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.links a {
+    text-decoration: none;
+    font-weight: 300;
+    color: #151515;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    width: 200px;
+    transition: all .1s ease-in-out;
+    margin-bottom: 5px;
+}
+.links a:hover {
+    color: #ffffff;
+    background: #151515; 
+}
+.links a.active {
+    color: #ffffff;
+    background: #151515; 
+}
+
+
+
+/* SECCION PRINCIPAL */
+.main {
+    margin: 10px 0 0px 10px;
+    width: 100%;
+    background: #f3f4f6;
+    border-radius: 10px 10px 0 0;
+}
+
+.main .agregar-tarea {
+    display: flex;
+    padding: 30px 20px 30px 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.agregar-tarea input {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    height: 50px;
+    padding-left: 15px;
+    width: 100%;
+    outline: none;
+    transition: all .1s ease-in-out;
+}
+.agregar-tarea input:focus {
+    border: 1px solid darkgray;
+}
+
+.agregar-tarea .button-agregar {
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    background-color: #151515;
+    font-weight: 300;
+    color: white;
+    border-radius: 5px;
+    width: 100px;
+    padding: 5px 10px 5px 10px;
+    margin-left: 10px;
+    transition: all .1s ease-in-out;
+    font-size: 13px;
+}
+.button-agregar:hover {
+    background: white;
+    color: #151515;
+    border: 1px solid #151515;
+}
+
+.main .tareas {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px 30px 20px;
+    margin-top: 20px;
+    height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.tareas #toggleOrder {
+    position: absolute;
+    right: 70px;
+    top: 30px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: .1s ease-in-out;
+}
+#toggleOrder:hover {
+    transform: scale(1.1);
+}
+
+.tareas .tarea-pendiente {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+.tareas .tarea-pendiente:hover {
+    transform: scale(1.01);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.tarea-pendiente .container-1 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.tarea-pendiente .check {
+    display: flex;
+    align-items: center;
+}
+
+.tarea-pendiente .container-2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.container-2 .fecha-hora {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.fecha-hora p {
+    font-size: 12px;
+    opacity: .8;
+}
+
+.tarea-pendiente.completada {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.tarea-pendiente.completada .check p {
+    text-decoration: line-through;
+    color: gray; /* Opcional: Cambia el color del texto tachado si lo deseas */
+}
+
+.tarea-pendiente .eliminar-tarea button {
+    border: none;
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+}
+.eliminar-tarea button:hover {
+    transform: scale(1.1);
+    color: red;
+}
+
+
+
+
+
+@media (max-width: 970px) {
+    body {
+        margin: 0;
+    }
+
+    .login-container,
+    .signup-container {
+        background: #ffffff;
+        transform: scale(1.2);
+        height: 100vh;
+    }
+
+    .form-login,
+    .form-signup {
+        border-radius: 0px;
+        box-shadow: none;
+        margin-bottom: 50px;
+    }
+
+    header .login #logout2 {
+        font-size: 16px;
+        background-color: #151515;
+        color: white;
+        border-radius: 5px;
+        font-weight: 400;
+        padding: 10px 15px 10px 15px;
+    }
+
+    header,
+    .sidebar,
+    .main .agregar-tarea,
+    .main .tareas {
+        border-radius: 0;
+        box-shadow: none;
+    }
+    
+    header {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+        margin-bottom: 0;
+    }
+
+    header .logo {
+        font-size: 12px;
+    }
+
+    header .buscador { 
+        display: none;
+    }
+
+    .login .header-login-logout {
+        display: none;
+    }
+
+    
+
+    .login #logout2 {
+        display: block;
+    }
+
+    .container {
+        margin: 0;
+        background: white;
+    }
+
+    /* Oculta el sidebar por defecto */
+    .sidebar {
+        display: none;
+    }
+
+    /* Muestra el botón de cerrar */
+    .sidebar .title .cerrar-sidebar {
+        display: block;
+    }
+
+    /* Muestra el menú hamburguesa */
+    header .menu-icon {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 26px;
+        cursor: pointer;
+    }
+
+    /* Ajusta el contenedor principal para ocupar el ancho completo */
+    .container {
+        flex-direction: column;
+    }
+
+    /* Anima la aparición del sidebar */
+    .sidebar.active {
+        display: block; /* Asegura que el sidebar se muestra */
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 250px;
+        background: white;
+        z-index: 1000;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        transform: translateX(0); /* Muestra el sidebar */
+    }
+
+    .sidebar {
+        transform: translateX(-100%); /* Oculta el sidebar fuera del viewport */
+        transition: transform 0.3s ease;
+        margin: 0;
+    }
+
+    .sidebar .cerrar-sidebar {
+        cursor: pointer;
+    }
+
+    .sidebar .buscador-sidebar {
+        display: flex;
+        width: 100%;
+    }
+
+    .buscador-sidebar #buscador-input {
+        background: none;
+        width: 100%;
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        outline: none;
+        padding: 10px 5px 10px 5px;
+        margin-top: 5px;
+    }
+
+    /* Ajustes para la sección principal al mostrar el sidebar */
+    .main {
+        margin: 0;
+    }
+
+    .main .agregar-tarea {
+        border-top: 1px solid lightgray; /* Ancho, tipo y color de la línea */
+    }
+
+    .agregar-tarea input {
+        width: 80%;
+    }
+
+    .main .tareas {
+        border-top: 1px solid lightgray; /* Ancho, tipo y color de la línea */
+        margin-top: 0;
+    }
+
+    .tareas #toggleOrder {
+        position: absolute;
+        right: 30px;
+        top: 35px;
+        background: none;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+        transition: .1s ease-in-out;
+    }
+}

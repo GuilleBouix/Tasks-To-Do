@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Todas mis Tareas - Tasks To Do!{% endblock %}
+
+{% block content %}
+<div class="tareas">
+    <h2>Todas mis Tareas</h2>
+    <button id="toggleOrder" onclick="toggleOrder('tareasContainerTodas')"><i class="fa-solid fa-arrow-up"></i> <i class="fa-solid fa-arrow-down"></i></button>
+    <div id="tareasContainerTodas">
+        {% for tarea in tareas %}
+        <div class="tarea-pendiente {{ 'completada' if tarea.estado == 1 else '' }}" data-id="{{ tarea.id_tarea }}" onclick="cambiarEstado(this)">
+            <div class="container-1">
+                <div class="check">
+                    <p>{{ tarea.descripcion }}</p>
+                </div>
+                <div class="eliminar-tarea">
+                    <form action="{{ url_for('eliminar_tarea', id_tarea=tarea.id_tarea) }}" method="POST">
+                        <button type="submit" title="Eliminar tarea"><i class="fa-regular fa-trash-can"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="container-2">
+                <div class="fecha-hora">
+                    <p>{{ tarea.fecha_creacion }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<script>
+function cambiarEstado(elemento) {
+    const idTarea = elemento.getAttribute('data-id');
+    const completada = !elemento.classList.contains('completada');
+    
+    fetch(`/actualizar_estado/${idTarea}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ completada: completada ? 1 : 0 })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            elemento.classList.toggle('completada', completada);
+            console.log('Estado actualizado');
+        } else {
+            console.error('Error al actualizar el estado');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+function toggleOrder(containerId) {
+    const tareasContainer = document.getElementById(containerId);
+    const tareas = Array.from(tareasContainer.getElementsByClassName('tarea-pendiente'));
+    
+    // Invertir el orden de las tareas
+    tareas.reverse();
+    
+    // Vaciar el contenedor de tareas y volver a añadirlas en el nuevo orden
+    tareasContainer.innerHTML = '';
+    tareas.forEach(tarea => tareasContainer.appendChild(tarea));
+}
+</script>
+{% endblock %}

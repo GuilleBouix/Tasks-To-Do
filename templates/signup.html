@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Registro - Tasks To Do!</title>
+</head>
+<body>
+    <!-- Formulario de Signup -->
+     <div class="signup-container">
+         <form class="form-signup" action="{{ url_for('registro') }}" method="POST">
+            <div class="title">
+                <h1 id="form-title">Registro</h1>
+            </div>
+
+             <div class="apellido">
+                 <label for="signup-apellido">Apellido:</label><br>
+                 <input type="text" name="apellido" id="signup-apellido" required><br>
+             </div>
+
+             <div class="nombre">
+                 <label for="signup-nombre">Nombre:</label><br>
+                 <input type="text" name="nombre" id="signup-nombre" required><br>
+             </div>
+
+             <div class="signup-email">
+                 <label for="signup-email">Email:</label><br>
+                 <input type="email" name="signup-email" id="signup-email" required><br>
+             </div>
+
+             <div class="signup-password">
+                 <label for="signup-password">Contraseña:</label><br>
+                 <input type="password" name="signup-contrasena" id="signup-password" required><br>
+             </div>
+
+             <div class="button-registrar">
+                 <button type="submit">Registrar</button><br>
+             </div>
+
+             <div class="login">
+                 <p>¿Ya tienes una cuenta?<a href="{{ url_for('ingreso') }}"> Ingresa</a></p>
+             </div>
+         </form>
+     </div>
+</body>
+</html>

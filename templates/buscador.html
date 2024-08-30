@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Resultados de búsqueda - Tasks To Do!
+{% endblock %}
+
+{% block content %}
+<div class="tareas">
+    <h2>Resultados de Búsqueda</h2>
+    <!-- Botón para alternar el orden de las tareas -->
+    <button id="toggleOrder" onclick="toggleOrder('tareasContainerResultados')"></button>
+
+    <!-- Contenedor para mostrar las tareas -->
+    <div id="tareasContainerResultados">
+        {% for tarea in tareas %}
+        <div class="tarea-pendiente {{ 'completada' if tarea.estado == 1 else '' }}" data-id="{{ tarea.id_tarea }}" onclick="cambiarEstado(this)">
+            <div class="container-1">
+                <div class="check">
+                    <p>{{ tarea.descripcion }}</p>
+                </div>
+                <div class="eliminar-tarea">
+                    <form action="{{ url_for('eliminar_tarea', id_tarea=tarea.id_tarea) }}" method="POST">
+                        <button type="submit" title="Eliminar tarea"><i class="fa-regular fa-trash-can"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="container-2">
+                <div class="fecha-hora">
+                    <!-- Muestra la fecha de creación de la tarea -->
+                    <p>{{ tarea.fecha_creacion }}</p>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <!-- Mostrar un mensaje si no hay resultados -->
+        <p>No se encontraron tareas que coincidan con la búsqueda.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

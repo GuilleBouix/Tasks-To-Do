@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Tareas Completadas - Tasks To Do!{% endblock %}
+
+{% block content %}
+<div class="tareas">
+    <h2>Tareas Completadas</h2>
+    {% if tareas %}
+        {% for tarea in tareas %}
+            {% if tarea.estado == 1 %}
+            <div class="tarea-pendiente completada">
+                <div class="container-1">
+                    <div class="check">             
+                        <p>{{ tarea.descripcion }}</p>
+                    </div>
+                    <div class="eliminar-tarea">
+                        <form action="{{ url_for('eliminar_tarea', id_tarea=tarea.id_tarea) }}" method="POST" style="display: inline;">
+                            <button title="Eliminar tarea" type="submit">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="container-2">
+                    <div class="fecha-hora">
+                        <p>{{ tarea.fecha_creacion }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <p>No tienes tareas completadas.</p>
+    {% endif %}
+</div>
+<script>
+function cambiarEstado(elemento) {
+    const idTarea = elemento.getAttribute('data-id');
+    const completada = !elemento.classList.contains('completada');
+    
+    fetch(`/actualizar_estado/${idTarea}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ completada: completada ? 1 : 0 })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            elemento.classList.toggle('completada', completada);
+            console.log('Estado actualizado');
+        } else {
+            console.error('Error al actualizar el estado');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+</script>
+{% endblock %}
